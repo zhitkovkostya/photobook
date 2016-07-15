@@ -1,7 +1,7 @@
 mixin socials(items)
-    .m-social
-        ul.m-social__list
+    .social
+        ul.social__list
             each item in items
-                li.m-social__item
-                    a(href='#').m-social__link
-                        +icon('soc_' + item, 'm-social__icon')
+                li.social__item
+                    a(href='#').social__link
+                        +icon('soc-' + item, 'social__icon')
