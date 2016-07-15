@@ -4,7 +4,8 @@ $prefix: '';
 // Fonts
 // -----------------------------------------
 
-$font-family-1:                             'Roboto', 'Arial', sans-serif;
+$font-family-1:                             'Proxima Nova', 'Arial', sans-serif;
+$font-family-2:                             'Panton', 'Arial', sans-serif;
 
 $font-thin:                                 100;
 $font-light:                                300;
@@ -15,6 +16,8 @@ $font-bold:                                 700;
 $font-black:                                900;
 
 $font-size-base: 16px;
+$font-size-title-1: 42px;
+$font-size-title-3: 21px;
 
 
 // -----------------------------------------
@@ -22,7 +25,10 @@ $font-size-base: 16px;
 // -----------------------------------------
 
 $color-text-base:                           #262626;
-
+$color-text-input:                          #323232;
+$color-bg-header-secondary:                 #f1f1f1;
+$color-fill-socials:                        #fdfdfd;
+$color-fill-nav:                            #a0a09f;
 
 // -----------------------------------------
 // Layout Breakpoints

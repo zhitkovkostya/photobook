@@ -1,0 +1,6 @@
+@mixin rounded ($d) {
+  width: $d;
+  height: $d;
+  border-radius: $d / 2;
+  overflow: hidden;
+}

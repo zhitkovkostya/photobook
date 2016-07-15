@@ -1,0 +1,7 @@
+mixin socials(items)
+    .m-social
+        ul.m-social__list
+            each item in items
+                li.m-social__item
+                    a(href='#').m-social__link
+                        +icon('soc_' + item, 'm-social__icon')

@@ -35,6 +35,7 @@ $.gulp.task('default', $.gulp.series(
     'pug',
     'js:process',
     'copy:fonts',
+    'copy:images',
     'sprite:svg'
   ),
   $.gulp.parallel(
@@ -52,6 +53,7 @@ $.gulp.task('build', $.gulp.series(
     'pug',
     'js:process',
     'copy:fonts',
+    'copy:images',
     'sprite:svg'
   )
 ));

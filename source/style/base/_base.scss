@@ -9,11 +9,13 @@ html {
 }
 
 body {
-  font: $font-regular $font-size-base $font-family-1;
+  font: $font-light $font-size-base $font-family-1;
   color: $color-text-base;
 }
 
 html,
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }

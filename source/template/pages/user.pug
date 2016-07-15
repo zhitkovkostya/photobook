@@ -1,0 +1,32 @@
+extends ../layouts/base.pug
+
+block variables
+    - var title = 'Страница пользователя'
+
+block content
+    .l-wrapper
+        header.l-header
+            .l-header__main
+                .l-header__userpic
+                    .m-userpic
+                        img(src='assets/img/default_avatar.jpg').m-userpic__image
+                .l-header__userinfo
+                    .m-userinfo
+                        .m-userinfo__name Александра Соколова
+                        .m-userinfo__about Я веб разработчик. Мне 24 года. Люблю путешествия, кодинг, фриланс и активный отдых.
+                        .m-userinfo__social
+                            +socials(['vk', 'fb', 'twitter', 'google', 'email'])
+                .l-header__nav
+                    +nav(['home'])
+            .l-header__secondary
+                .l-header__search
+                    .m-search
+                        +icon('search', "m-search__icon")
+                        input(type='input', placeholder='Исследовать мир').m-search__input
+        .l-content
+            h1.m-title.m-title_1
+            .l-content__inner
+    footer.l-footer
+        .l-footer__section
+        .l-footer__scroll-btn
+        .l-footer__section

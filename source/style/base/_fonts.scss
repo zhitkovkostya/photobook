@@ -1,35 +1,35 @@
 @font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: $font-regular;
-  src: url('../fonts/roboto-regular.woff2') format('woff2'),
-  url('../fonts/roboto-regular.woff') format('woff'),
-  url('../fonts/roboto-regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
+  font-family: 'Panton';
   font-style: normal;
   font-weight: $font-bold;
-  src: url('../fonts/roboto-bold.woff2') format('woff2'),
-  url('../fonts/roboto-bold.woff') format('woff'),
-  url('../fonts/roboto-bold.ttf') format('truetype');
+  src: url('../fonts/panton-bold.woff2') format('woff2'),
+  url('../fonts/panton-bold.woff') format('woff'),
+  url('../fonts/panton-bold.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Proxima Nova';
   font-style: normal;
   font-weight: $font-light;
-  src: url('../fonts/roboto-light.woff2') format('woff2'),
-  url('../fonts/roboto-light.woff') format('woff'),
-  url('../fonts/roboto-light.ttf') format('truetype');
+  src: url('../fonts/proximanova-light.woff2') format('woff2'),
+  url('../fonts/proximanova-light.woff') format('woff'),
+  url('../fonts/proximanova-light.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Proxima Nova';
   font-style: italic;
-  font-weight: $font-thin;
-  src: url('../fonts/roboto-thin-italic.woff2') format('woff2'),
-  url('../fonts/roboto-thin-italic.woff') format('woff'),
-  url('../fonts/roboto-thin-italic.ttf') format('truetype');
+  font-weight: $font-light;
+  src: url('../fonts/proximanova-lightit.woff2') format('woff2'),
+  url('../fonts/proximanova-lightit.woff') format('woff'),
+  url('../fonts/proximanova-lightit.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  font-style: normal;
+  font-weight: $font-semibold;
+  src: url('../fonts/proxima_nova_semibold.woff2') format('woff2'),
+  url('../fonts/proxima_nova_semibold.woff') format('woff'),
+  url('../fonts/proxima_nova_semibold.ttf') format('truetype');
 }
