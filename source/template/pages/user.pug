@@ -6,19 +6,19 @@ block variables
 block content
     .wrapper
         header.header
-            .header_main
+            .header_main.header_main--user
                 .header_userpic
                     .userpic
                         img(src='assets/img/default-avatar.jpg').userpic_image
-                .header_userinfo
-                    .userinfo
-                        .userinfo_name Александра Соколова
-                        .userinfo_about Я веб разработчик. Мне 24 года. Люблю путешествия, кодинг, фриланс и активный отдых.
-                        .userinfo_social
+                .header_pageinfo.header_pageinfo--right
+                    .pageinfo.pageinfo--right
+                        .pageinfo_user-name Александра Соколова
+                        .pageinfo_user-info Я веб разработчик. Мне 24 года. Люблю путешествия, кодинг, фриланс и активный отдых.
+                        .pageinfo_social
                             +socials(['vk', 'fb', 'twitter', 'google', 'email'])
                 .header_nav
                     +nav(['home'])
-            .header_secondary
+            .header_secondary.header_secondary--right
                 .header_search
                     .search
                         +icon('search', ['icon-15', 'icon-iron'])

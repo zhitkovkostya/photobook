@@ -1,0 +1,53 @@
+extends ../layouts/base.pug
+
+block variables
+    - var title = 'Альбом пользователя'
+
+block content
+    .wrapper
+        header.header
+            .header_main.header_main--album
+                .header_top
+                    .header_userpic
+                        .userpic.userpic--small
+                            img(src='assets/img/default-avatar.jpg').userpic_image
+                    .header_username.header_username--white Александра Соколова
+                .header_pageinfo
+                    .pageinfo
+                        .pageinfo_album-name Лесные прогулки
+                        .pageinfo_album-info Фотографии природы леса, енотов и оленей. Как прекрасно сойти на дальней станции и пройтись по полю босиком. И чтобы никто не беспокоил бродить влюбленным в тишину.<br>Запах мёда, лесных оленей и енотов будоражит нутро.
+                .header_nav.header_nav--album
+                    +nav(['home', 'edit'])
+            .header_secondary.header_secondary--center
+                .header_counts
+                    +counts([
+                        {
+                            'title': 'Фотографий',
+                            'amount': '18',
+                            'icon': 'cam'
+                        },
+                        {
+                            'title': 'Лайков',
+                            'amount': '14',
+                            'icon': 'like'
+                        },
+                        {
+                            'title': 'Комментариев',
+                            'amount': '4',
+                            'icon': 'comments'
+                        }
+                    ])
+            .header_secondary.is-hidden
+                .header_top
+                    .header_userpic
+                        .userpic.userpic--small
+                            img(src='assets/img/default-avatar.jpg').userpic_image
+                    .header_username Александра Соколова
+                +nav(['home'])
+        .content
+            h1.title.title--1
+            .content_inner
+    footer.footer
+        .footer_section
+        .footer_scroll-btn
+        .footer_section

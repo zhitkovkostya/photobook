@@ -1,0 +1,9 @@
+mixin counts(items)
+    .counts
+        ul.counts_list
+            each item in items
+                li.counts_item
+                    a(href='#').counts_link
+                        +icon(item.icon, ['icon-20', 'icon-iron'])
+                        span.counts_amount= item.amount
+                        span.counts_title= item.title
