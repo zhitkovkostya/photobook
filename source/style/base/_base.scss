@@ -9,6 +9,7 @@ html {
 }
 
 body {
+  min-width: 320px;
   font: $font-light $font-size-base $font-family-1;
   color: $color-text-base;
 }
@@ -16,6 +17,4 @@ body {
 html,
 body {
   height: 100%;
-  margin: 0;
-  padding: 0;
 }

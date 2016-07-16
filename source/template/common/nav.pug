@@ -1,7 +1,7 @@
 mixin nav(items)
     nav.nav
-        ul.nav__list
+        ul.nav_list
             each item in items
-                li.nav__item
-                    a(href='#').nav__link
-                        +icon(item, 'nav__icon')
+                li.nav_item
+                    a(href='#').nav_link
+                        +icon(item, ['icon-20', 'icon-grey'])
