@@ -21,8 +21,6 @@ let plugins = [
 
 let loaders = [
 
-  { test: /\.html$/, loader: 'ngtemplate?relativeTo=' + inputPath + '!html' },
-
   { test: /\.json$/, loader: 'json' },
 
   {
@@ -93,7 +91,7 @@ $.path.foundation.forEach(dependency => {
 
   webpackConfig.resolve.alias[dependencyName] = dependencyPath;
   webpackConfig.module.noParse.push(dependencyPath);
-  webpackConfig.entry.foundation.push(dependencyName)
+  webpackConfig.entry.foundation.push(dependencyName);
 });
 
 module.exports = validate(webpackConfig);

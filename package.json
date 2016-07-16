@@ -28,13 +28,11 @@
     "gulp-sourcemaps": "1.6.0",
     "gulp-uglify": "1.5.4",
     "json-loader": "0.5.4",
-    "raw-loader": "0.5.1",
     "rimraf": "2.5.2",
     "webpack": "1.13.1",
     "webpack-validator": "2.2.1"
   },
   "dependencies": {
-    "angular": "1.5.7",
     "jquery": "2.2.2"
   }
 }
