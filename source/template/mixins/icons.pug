@@ -7,5 +7,5 @@
 
 mixin icon(name, mods)
   - mods = mods || ''
-  svg(class=mods)
+  svg(class='icon icon-' + name class=mods)
     use(xlink:href="/assets/sprite/sprite.svg#" + name)
