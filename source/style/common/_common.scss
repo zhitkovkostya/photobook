@@ -82,7 +82,7 @@
   &_top {
     display: block;
     width: 100%;
-}
+  }
 
   &_userpic {
     display: inline-block;
@@ -248,7 +248,7 @@
     margin: 10px 0;
     text-align: center;
     font-family: $font-family-1;
-    font-weight:  $font-semibold;
+    font-weight: $font-semibold;
     color: $color-white;
   }
 
@@ -353,8 +353,171 @@
   }
 }
 
+.content {
+  &_inner {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+  }
+}
+
+.photo-card {
+  display: block;
+  overflow: hidden;
+  border-radius: 3px;
+  box-shadow: 0px 0px 4px 1px rgba($color-grey, 0.4);
+
+  &_list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &_item {
+    @include desktop {
+      max-width: calc(100% * (1 / 3) - 20px);
+    }
+    @include tablet {
+      max-width: calc(100% * (1 / 2) - 20px);
+    }
+    @include phone {
+      max-width: calc(100% - 20px);
+      min-width: 300px;
+    }
+    display: block;
+    margin: 10px;
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  &_header {
+    @include desktop {
+      height: 250px;
+    }
+    @include tablet {
+      height: 230px;
+    }
+    @include phone {
+      height: 200px;
+    }
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  &_link {
+    @include desktop {
+      &:hover {
+        &::before {
+          background: linear-gradient(to top, rgba(50, 50, 50, 0.3) 0%, rgba(50, 50, 50, 0) 100%);
+        }
+
+        .icon-loupe {
+          display: block;
+        }
+      }
+    }
+    @include tablet {
+      &:hover {
+        &::before {
+          background: linear-gradient(to top, rgba(50, 50, 50, 0.3) 0%, rgba(50, 50, 50, 0) 100%);
+        }
+
+        .icon-loupe {
+          display: block;
+        }
+      }
+    }
+    display: block;
+    height: 100%;
+
+    &::before {
+      content: ' ';
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to top, rgba(50, 50, 50, 0.3) 0%, rgba(50, 50, 50, 0) 30%);
+    }
+  }
+
+  &_image {
+    @include phone {
+      width: 100%;
+    }
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  &_actions {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+  }
+
+  &_footer {
+    @include desktop {
+      padding: 0 20px;
+    }
+    @include tablet {
+      padding: 0 20px;
+    }
+    @include phone {
+      padding: 0 10px;
+    }
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &_edit {
+    opacity: 0.2;
+  }
+
+  &_title {
+    @include desktop {
+      font: $font-light 16px $font-family-1;
+    }
+    @include tablet {
+      font: $font-light 16px $font-family-1;
+    }
+    @include phone {
+      font: $font-light 14px $font-family-1;
+    }
+    margin-left: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+  }
+}
+
+.actions {
+  &_item {
+    display: inline-block;
+    margin-right: 15px;
+  }
+
+  &_link {
+    text-decoration: none;
+  }
+
+  &_count {
+    margin-left: 5px;
+    vertical-align: middle;
+    font: $font-bold 16px $font-family-2;
+    color: $color-white;
+  }
+}
+
 .icon {
   display: inline-block;
+  vertical-align: middle;
 }
 
 .icon-15 {
@@ -365,6 +528,15 @@
 .icon-20 {
   width: 20px;
   height: 20px;
+}
+
+.icon-40 {
+  width: 40px;
+  height: 40px;
+}
+
+.icon-white {
+  fill: $color-white;
 }
 
 .icon-grey {
@@ -402,17 +574,24 @@
 .icon-cam,
 .icon-like,
 .icon-comments {
+  margin-right: 5px;
+}
+
+.icon-count {
   @include desktop {
     display: none;
   }
   @include tablet {
     display: none;
   }
-  @include phone {
-    display: inline-block;
-  }
-  vertical-align: middle;
-  margin-right: 5px;
+}
+
+.icon-loupe {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
 }
 
 .is-hidden {

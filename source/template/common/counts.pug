@@ -4,6 +4,6 @@ mixin counts(items)
             each item in items
                 li.counts_item
                     a(href='#').counts_link
-                        +icon(item.icon, ['icon-20', 'icon-iron'])
+                        +icon(item.icon, ['icon-20', 'icon-iron', 'icon-count'])
                         span.counts_amount= item.amount
                         span.counts_title= item.title
