@@ -1,0 +1,23 @@
+mixin photo-edit
+    .modal_overlay
+    .modal
+        header.modal_header
+            .modal_title Редактировать фотографию
+            a(href='#').modal_close
+                +icon('close', ['icon-30', 'icon-iron'])
+        section.modal_content
+            form.form
+                label.input_label
+                    span.input_title Название
+                    input(type='input').input
+                label.textarea_label
+                    span.input_title Описание
+                    textarea.textarea
+        footer.modal_footer
+            .btn_group
+                a(href='#').btn.btn--info Сохранить
+                a(href='#').btn.btn--link.btn--sky Отменить
+            a(href='#').btn.btn--danger
+                .btn_icon
+                    +icon('delete', ['icon-15', 'icon-white'])
+                    .btn_text.is-hidden--phone Удалить

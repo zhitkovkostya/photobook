@@ -1,0 +1,53 @@
+- var name = 'Антон Черепов'
+- var text = 'Бурное развитие внутреннего туризма привело Томаса Кука к необходимости организовать поездки за границу, при этом фьорд превышает экскурсионный динамометаморфизм.'
+
+mixin comments(amount)
+    li.comments_item
+        .comments_userpic
+            a(href='#').userpic.userpic--small
+                img(src='assets/img/default-avatar.jpg').userpic_image
+        .comments_message
+            a(href='#').comments_username Антон Черепов
+            .comments_input
+                input(type='input', placeholder='Добавить комментарий').input
+                a(href='#').btn.btn--line.btn--sky Добавить
+    - var i = 0
+    while (i++ < amount)
+        li.comments_item
+            .comments_userpic
+                a(href='#').userpic.userpic--small
+                    img(src='assets/img/default-avatar.jpg').userpic_image
+            .comments_message
+                a(href='#').comments_username= name
+                .comments_text= text
+
+mixin photo-preview
+    .modal_overlay.is-hidden--phone
+    .modal.modal--top.is-hidden--phone
+        .photo-preview
+            header.photo-preview_header
+                img(src='assets/img/no-photo.jpg').photo-preview_image
+                a(href='#').photo-preview_controls.photo-preview_controls--prev
+                    +icon('arrow-left', ['icon-30', 'icon-coin'])
+                a(href='#').photo-preview_controls.photo-preview_controls--next
+                    +icon('arrow-right', ['icon-30', 'icon-coin'])
+                a(href='#').photo-preview_close
+                    +icon('close', ['icon-30', 'icon-coin'])
+            section.photo-preview_info
+                .user-bar
+                    .user-bar_group
+                        a(href='#').userpic.userpic--small
+                            img(src='assets/img/default-avatar.jpg').userpic_image
+                        a(href='#').user-bar_username= name
+                    a(href='#').btn.btn--danger.btn--bold
+                        .btn_icon
+                            +icon('no-like', ['icon-20', 'icon-white'])
+                        |  16
+                .photo-preview_title Путешествие на речном трамвайчике
+                .photo-preview_description= text
+            footer.photo-preview_footer
+                .comments
+                    a(href='#').comments_title Комментарии
+                        +icon('arrow-down', ['icon-15', 'icon-iron'])
+                    ul.comments_list
+                        +comments(2)

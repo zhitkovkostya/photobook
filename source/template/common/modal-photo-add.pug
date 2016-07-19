@@ -1,0 +1,36 @@
+mixin photo-add(amount)
+    .modal_overlay
+    .modal
+        header.modal_header
+            .modal_title Добавить фотографии
+            a(href='#').modal_close
+                +icon('close', ['icon-30', 'icon-iron'])
+        section.modal_content
+            .add-photo_meta
+                .add-photo_field Название
+                    span.is-hidden--phone альбома
+                .add-photo_value Как я провел лето
+            if (amount)
+                mixin photo
+                    - var i = 0
+                    while (i++ < amount)
+                        li.add-photo_item
+                            img(src="assets/img/no-album.jpg").add-photo_image
+                            a(href="#").add-photo_delete
+                                +icon('close', ['icon-10', 'icon-white'])
+                .add-photo
+                    ul.add-photo_list
+                        +photo
+            else
+                .add-photo.add-photo--empty
+                    .add-photo_placeholder
+                        +icon('cam', ['icon-40', 'icon-grey'])
+                    .add-photo_text.is-hidden--phone Перетащите фото сюда<br> или
+                        a(href='#').add-photo_link  выберите файл
+                    a(href='#').btn.btn--sky.btn--line.is-shown--phone Выберите файл
+                .alert.alert--danger.is-hidden--phone Выбран неверный формат изображений. Попробуйте снова
+
+        footer.modal_footer
+            .btn_group
+                a(href='#').btn.btn--info Сохранить
+                a(href='#').btn.btn--link.btn--sky Отменить
