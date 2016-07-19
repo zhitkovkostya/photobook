@@ -7,5 +7,6 @@
  */
 
 module.exports = [
-  'jquery/dist/jquery.min.js'
+  'jquery/dist/jquery.min.js',
+  'es6-promise/dist/es6-promise.min.js'
 ];
