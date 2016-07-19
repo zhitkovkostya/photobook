@@ -1,0 +1,25 @@
+mixin photo-cards(amount)
+    ul.photo-card_list
+        - var i = 0
+        while i++ < amount
+            li.photo-card_item
+                .photo-card
+                    header.photo-card_header
+                        a(href='#').photo-card_link
+                            img(src='assets/img/no-photo.jpg').photo-card_image
+                            +icon('loupe', ['icon-40', 'icon-white'])
+                        .photo-card_actions
+                            .actions
+                                ul.actions_list
+                                    li.actions_item
+                                        a(href='#').actions_link
+                                            +icon('comments', ['icon-20', 'icon-white'])
+                                            span.actions_count 9
+                                    li.actions_item
+                                        a(href='#').actions_link
+                                            +icon('like', ['icon-20', 'icon-white'])
+                                            span.actions_count 15
+                    footer.photo-card_footer
+                        a(href='#').photo-card_edit
+                            +icon('edit', 'icon-20', 'icon-grey')
+                        span.photo-card_title Название фотографии

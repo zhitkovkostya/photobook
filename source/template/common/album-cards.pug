@@ -1,0 +1,14 @@
+mixin album-cards(amount)
+    ul.album-card_list
+        - var i = 0
+        while i++ < amount
+            li.album-card_item
+                .album-card
+                    header.album-card_header
+                        a(href='#').album-card_link
+                            img(src='assets/img/no-album.jpg').album-card_image
+                            .album-card_info
+                                .album-card_description Фотографии природы леса, енотов и оленей. Как прекрасно сойти на дальней станции и пройтись по полю босиком. И чтобы никто не беспокоил бродить влюбленным в тишину. Запах мёда, лесных оленей и енотов будоражит нутро.
+                                .album-card_count 18 Фотографий
+                    footer.album-card_footer.album-card_footer--right
+                        span.album-card_title Название альбома
