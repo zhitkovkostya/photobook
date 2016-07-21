@@ -5,19 +5,31 @@ block variables
 
 block content
     .wrapper
-        header.header
+        header.header(style = 'background: url("assets/img/no-album-cover.jpg") no-repeat center center; background-size: cover;')
             .header_main.header_main--user
-                .header_userpic
-                    .userpic
-                        img(src='assets/img/default-avatar.jpg').userpic_image
-                .header_pageinfo.header_pageinfo--right
-                    .pageinfo.pageinfo--right
-                        .pageinfo_user-name Александра Соколова
-                        .pageinfo_user-info Я веб разработчик. Мне 24 года. Люблю путешествия, кодинг, фриланс и активный отдых.
-                        .pageinfo_social
-                            +socials(['vk', 'fb', 'twitter', 'google', 'email'])
+                .header_user-panel
+                    .user-panel
+                        .user-panel_userpic
+                            .userpic
+                                img(src='assets/img/default-avatar.jpg').userpic_image
+                        .user-panel_user-name Александра Соколова
+                        .user-panel_user-info Я веб разработчик. Мне 24 года. Люблю путешествия, кодинг, фриланс и активный отдых.
+                        .user-panel_social
+                            .social
+                                ul.social_list
+                                    each item in ['soc-vk', 'soc-fb', 'soc-twitter', 'soc-google', 'soc-email']
+                                        li.social_item
+                                            a(href='#').social_link
+                                                svg.icon.icon-20.icon-coin(class='icon-' + item)
+                                                    use(xlink:href="assets/sprite/sprite.svg#" + item)
                 .header_nav
-                    +nav(['home'])
+                    nav.nav
+                        ul.nav_list
+                            each item in ['home']
+                                li.nav_item
+                                    a(href='#').nav_link
+                                        svg.icon.icon-20.icon-grey(class='icon-' + item)
+                                            use(xlink:href="assets/sprite/sprite.svg#" + item)
             .header_secondary.header_secondary--right
                 .header_search
                     .search
