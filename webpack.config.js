@@ -21,7 +21,16 @@ let plugins = [
 
 let loaders = [
 
-  { test: /\.json$/, loader: 'json' },
+  {
+    test: /\.json$/,
+    loader: 'json'
+  },
+
+  {
+    test: /\.hbs/,
+    loader: 'handlebars-loader',
+    exclude: /node_modules/
+  },
 
   {
     test: /\.js$/,
