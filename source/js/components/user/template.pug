@@ -1,0 +1,14 @@
+
+.user-panel_userpic
+    .userpic
+        img(src='#{photo}').userpic_image
+.user-panel_user-name #{name}
+.user-panel_user-info #{status}
+.user-panel_social
+    .social
+        ul.social_list
+            each item in ['soc-vk', 'soc-fb', 'soc-twitter', 'soc-google', 'soc-email']
+                li.social_item
+                    a(href='#').social_link
+                        svg.icon.icon-20.icon-coin(class='icon-' + item)
+                            use(xlink:href="assets/sprite/sprite.svg#" + item)
