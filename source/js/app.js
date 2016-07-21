@@ -1,3 +1,5 @@
-if($('.album-card_list').length) {
-  var album = require('./components/album');
+var Album = require('./components/album/album');
+
+if(document.querySelector('.album-card_list')) {
+  new Album('.album-card_list');
 }

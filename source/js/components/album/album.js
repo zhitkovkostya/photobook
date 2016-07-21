@@ -1,5 +1,5 @@
 var vk = require('../apiVk');
-var template = require('./template.hbs');
+var template = require('jade!./template.pug');
 
 /**
 * Компонент "Альбом"
@@ -10,11 +10,19 @@ class Album {
 
   /**
   * Конструктор класса
-  * Инициализирует контейнер для альбомов и производит загрузку, чтение данных альбомов и отображение элементов
+  * @param {string} selector - Селектор элемента
   */
 
-  constructor() {
-    this.albumsContainer = $('.album-card_list');
+  constructor(selector) {
+    if(typeof selector !== 'string') {
+      throw new Error('Selector must be a string.');
+    }
+    this.rootEl  = document.querySelector(selector);
+    //$('.album-card_list');
+
+    if (!this.rootEl) {
+      throw new Error(`Element not found: ${selector}`);
+    }
 
     this._loadAlbums()
       .then((res) => this._readAlbums(res))
@@ -34,12 +42,12 @@ class Album {
   * Метод для загрузки обложки альбома
   * @param {number} owner_id - id владельца альбома
   * @param {number} thumb_id - id обложки альбома
-  * @returns {Promise|undefined} - Данные обложки альбома
+  * @returns {Promise} - Данные обложки альбома
   */
 
   _loadCover(owner_id, thumb_id) {
     if(!(typeof owner_id === 'number') || !(typeof thumb_id === 'number')) {
-      return;
+      throw new Error('Owner_id and thunb_id must be a number.');
     }
     
     return vk.callApi('photos.getById', {photos: owner_id + "_" + thumb_id});
@@ -48,12 +56,11 @@ class Album {
   /**
   * Метод для чтения данных альбома
   * @param {Object} - Данные обложки альбома
-  * @returns {undefined} - В случае некооректных входных параметров
   */
 
   _readAlbums(response) {
     if(!(response instanceof Object)) {
-      return;
+      throw new Error('Response must be a Object.');
     }
 
     this.albums = response.items.sort((a, b) => b.created < a.created);
@@ -77,7 +84,7 @@ class Album {
             name: item.title
           };
 
-          this.albumsContainer.append(template(options));
+          this.rootEl.innerHTML += template(options);
 
         });
 
@@ -85,4 +92,4 @@ class Album {
   }
 }
 
-module.exports = new Album();
+module.exports = Album;
