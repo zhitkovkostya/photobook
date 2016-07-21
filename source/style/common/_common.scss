@@ -7,38 +7,31 @@
   display: block;
   overflow: hidden;
   position: relative;
-  background: url('../img/no-album-cover.jpg') no-repeat center center;
-  background-size: cover;
 
   &_main {
     @include desktop {
-      flex-direction: row;
       padding: 20px 85px;
     }
     @include tablet {
-      flex-direction: row;
       padding: 20px 25px;
     }
     @include phone {
-      flex-direction: column;
       padding: 20px 15px;
     }
     display: flex;
+    flex-direction: column;
+    align-self: stretch;
     align-items: center;
     width: 100%;
     height: 240px;
     overflow: hidden;
+    position: relative;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.35) 100%, rgba(0, 0, 0, 0) 100%);
 
     &--user {
       @include desktop {
         background: linear-gradient(to right, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 100%);
       }
-    }
-
-    &--album {
-      flex-direction: column;
-      height: 255px;
     }
   }
 
@@ -78,38 +71,21 @@
     }
   }
 
-  &_top {
+  &_user {
     display: block;
     width: 100%;
   }
 
-  &_userpic {
-    display: inline-block;
-    vertical-align: middle;
+  &_user-panel {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
   }
 
-  &_username {
-    display: inline-block;
-    margin-left: 20px;
-    font: $font-bold 16px $font-family-2;
-
-    &--white {
-      color: $color-white;
-    }
-  }
-
-  &_pageinfo {
-    &--right {
-      @include desktop {
-        margin-left: 45px;
-      }
-      @include tablet {
-        margin-left: 20px;
-      }
-      @include phone {
-        margin-left: 0;
-      }
-    }
+  &_album-panel {
+    display: flex;
+    height: 100%;
   }
 
   &_nav {
@@ -125,12 +101,6 @@
     display: block;
     position: absolute;
     top: 20px;
-
-    &--album {
-      @include phone {
-        display: none;
-      }
-    }
   }
 
   &_search {
@@ -160,6 +130,34 @@
     align-items: center;
     width: 100%;
     height: 100%;
+  }
+}
+
+.user {
+  display: flex;
+  align-items: center;
+
+  &_username {
+    display: inline-block;
+    margin-left: 20px;
+    font: $font-bold 16px $font-family-2;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      color: $color-iron;
+      text-decoration: none;
+    }
+
+    &--inverse {
+      &:link,
+      &:visited,
+      &:hover,
+      &:active {
+        color: $color-white;
+      }
+    }
   }
 }
 
@@ -207,19 +205,42 @@
   }
 }
 
-.pageinfo {
+.user-panel {
+  @include desktop {
+    padding-left: 160px;
+    text-align: left;
+  }
+  @include tablet {
+    padding-left: 120px;
+    text-align: left;
+  }
   @include phone {
-    align-items: center;
+    padding-left: 0;
     text-align: center;
   }
-  display: flex;
-  flex-direction: column;
-  max-width: 100%;
-  height: 100%;
+
+  display: block;
+  width: 100%;
+  position: relative;
+
+  &_userpic {
+    @include desktop {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    @include tablet {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    @include phone {
+      position: relative;
+    }
+  }
 
   &_user-name {
     display: block;
-    max-width: 430px;
     margin: 10px 0;
     font: $font-bold 21px $font-family-2;
     color: $color-white;
@@ -227,12 +248,19 @@
 
   &_user-info {
     display: block;
-    max-width: 430px;
+    max-height: 48px;
+    overflow: hidden;
     margin-bottom: 25px;
     color: $color-white;
   }
 
-  &_album-name {
+  &_social {
+    display: inline-block;
+  }
+}
+
+.album-panel {
+  &_title {
     @include desktop {
       font-size: 21px;
     }
@@ -243,29 +271,19 @@
       font-size: 18px;
     }
     display: block;
-    max-width: 750px;
-    margin: 10px 0;
+    width: 100%;
+    margin-bottom: 10px;
     text-align: center;
     font-family: $font-family-1;
     font-weight: $font-semibold;
     color: $color-white;
   }
 
-  &_album-info {
-    @include desktop {
-      font-size: 16px;
-      line-height: 24px;
-    }
-    @include tablet {
-      font-size: 16px;
-      line-height: 24px;
-    }
+  &_descr {
     @include phone {
       font-size: 14px;
-      line-height: 21px;
     }
     display: block;
-    max-width: 750px;
     text-align: center;
     font-family: $font-family-1;
     font-weight: $font-light;
@@ -985,6 +1003,14 @@
   &_description {
     margin-bottom: 10px;
   }
+
+  &_user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+  }
 }
 
 .comments {
@@ -1126,15 +1152,17 @@
   &_label {
     @include desktop {
       flex-direction: row;
+      align-items: center;
     }
     @include tablet {
       flex-direction: column;
+      align-items: flex-start;
     }
     @include phone {
       flex-direction: column;
+      align-items: flex-start;
     }
     display: flex;
-    align-items: flex-start;
     margin-bottom: 20px;
   }
 

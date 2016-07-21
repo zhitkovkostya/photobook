@@ -34,15 +34,15 @@ mixin photo-preview
                 a(href='#').photo-preview_close
                     +icon('close', ['icon-30', 'icon-coin'])
             section.photo-preview_info
-                .user-bar
-                    .user-bar_group
+                .photo-preview_user
+                    .user
                         a(href='#').userpic.userpic--small
                             img(src='assets/img/default-avatar.jpg').userpic_image
-                        a(href='#').user-bar_username= name
+                        a(href='#').user_username= name
                     a(href='#').btn.btn--danger.btn--bold
                         .btn_icon
                             +icon('no-like', ['icon-20', 'icon-white'])
-                        |  16
+                        .btn_text 16
                 .photo-preview_title Путешествие на речном трамвайчике
                 .photo-preview_description= text
             footer.photo-preview_footer
