@@ -1,5 +1,5 @@
 
-var VK = require('../apiVK/index.js');
+var VK = require('../api-vk');
 var compileFn = require("jade!./template.pug");
 
 /**
