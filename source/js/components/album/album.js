@@ -1,4 +1,4 @@
-var vk = require('../apiVk');
+var vk = require('../api-vk');
 var template = require('jade!./template.pug');
 
 /**
@@ -15,18 +15,19 @@ class Album {
 
   constructor(selector) {
     if(typeof selector !== 'string') {
-      throw new Error('Selector must be a string.');
+      throw new Error(`Selector must be a string: ${selector}.`);
     }
     this.rootEl  = document.querySelector(selector);
-    //$('.album-card_list');
 
     if (!this.rootEl) {
       throw new Error(`Element not found: ${selector}`);
     }
 
     this._loadAlbums()
-      .then((res) => this._readAlbums(res))
-      .then((res) => this._renderAlbums());
+      .then((response) => this._readAlbums(response))
+      .then(() => this._loadCovers(this.coverOptions))
+      .then((response) => this._readCovers(response))
+      .then(() => this._renderAlbums());
   }
 
   /**
@@ -39,23 +40,21 @@ class Album {
   }
 
   /**
-  * Метод для загрузки обложки альбома
-  * @param {number} owner_id - id владельца альбома
-  * @param {number} thumb_id - id обложки альбома
-  * @returns {Promise} - Данные обложки альбома
+  * Метод для загрузки обложек альбомов
+  * @param {string} photos - id обложек альбомов через запятую: <id владельца>_<id фото>
+  * @returns {Promise} - Данные обложек альбомов
   */
 
-  _loadCover(owner_id, thumb_id) {
-    if(!(typeof owner_id === 'number') || !(typeof thumb_id === 'number')) {
-      throw new Error('Owner_id and thunb_id must be a number.');
+  _loadCovers(photos) {
+    if(typeof photos !== 'string') {
+      throw new Error(`Photos must be a string: ${photos}.`);
     }
-    
-    return vk.callApi('photos.getById', {photos: owner_id + "_" + thumb_id});
+    return vk.callApi('photos.getById', {photos: photos});
   }
   
   /**
   * Метод для чтения данных альбома
-  * @param {Object} - Данные обложки альбома
+  * @param {Object} response - Данные обложки альбома
   */
 
   _readAlbums(response) {
@@ -64,6 +63,23 @@ class Album {
     }
 
     this.albums = response.items.sort((a, b) => b.created < a.created);
+    this.coverOptions = '';
+    this.albums.forEach((album) => {
+      this.coverOptions += album.owner_id + "_" + album.thumb_id + ",";
+    });
+  }
+
+  /**
+   * Метод для чтения данных обложек альбомов
+   * @param {Object} response - Данные обложки альбома
+   */
+
+  _readCovers(response) {
+    if(!(response instanceof Object)) {
+      throw new Error('Response must be a Object.');
+    }
+
+    this.covers = response;
   }
 
   /**
@@ -71,23 +87,16 @@ class Album {
   */
   
   _renderAlbums() {
-    this.albums.forEach((item) => {
+    this.albums.forEach((album, index) => {
+      let options = {
+        link: "#",
+        cover: this.covers[index].photo_604,
+        description: album.description,
+        count: album.size,
+        name: album.title
+      };
 
-      this._loadCover(item.owner_id, item.thumb_id)
-        .then((res) => {
-
-          let options = {
-            link: "#",
-            cover: res[0].photo_604,
-            description: item.description,
-            count: item.size,
-            name: item.title
-          };
-
-          this.rootEl.innerHTML += template(options);
-
-        });
-
+      this.rootEl.innerHTML += template(options);
     });
   }
 }
