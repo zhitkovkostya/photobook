@@ -17,7 +17,7 @@ class User {
         this.rootEl = document.querySelector(selector);
 
         if (!this.rootEl) {
-            throw new Error(`Element not found: ${selector}`);
+            throw new Error(`Element hasn't found: ${selector}`);
         }
 
         this._loadUser()

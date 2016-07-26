@@ -20,7 +20,7 @@ class Album {
     this.rootEl  = document.querySelector(selector);
 
     if (!this.rootEl) {
-      throw new Error(`Element not found: ${selector}`);
+      throw new Error(`Element hasn't found: ${selector}`);
     }
 
     this._loadAlbums()
@@ -59,7 +59,7 @@ class Album {
 
   _readAlbums(response) {
     if(!(response instanceof Object)) {
-      throw new Error('Response must be a Object.');
+      throw new Error('Response must be an Object.');
     }
 
     this.albums = response.items.sort((a, b) => b.created < a.created);
@@ -76,7 +76,7 @@ class Album {
 
   _readCovers(response) {
     if(!(response instanceof Object)) {
-      throw new Error('Response must be a Object.');
+      throw new Error('Response must be an Object.');
     }
 
     this.covers = response;
@@ -89,6 +89,7 @@ class Album {
   _renderAlbums() {
     this.albums.forEach((album, index) => {
       let options = {
+        id: album.id,
         link: "#",
         cover: this.covers[index].photo_604,
         description: album.description,
