@@ -1,11 +1,45 @@
 extends ../layouts/base.pug
 
 block variables
-    - var title = "Base template"
+    - var title = 'Страница пользователя'
 
 block content
-    ul
-        li
-            a(href="user.html") user.html
-        li
-            a(href="album.html") album.html
+    .wrapper
+        header.header(style = 'background: url("assets/img/no-album-cover.jpg") no-repeat center center; background-size: cover;')
+            .header_main.header_main--user
+                .header_user-panel
+                    .user-panel
+                        .user-panel_userpic
+                            .userpic
+                                img(src='assets/img/default-avatar.jpg').userpic_image
+                        .user-panel_user-name Александра Соколова
+                        .user-panel_user-info Я веб разработчик. Мне 24 года. Люблю путешествия, кодинг, фриланс и активный отдых.
+                        .user-panel_social
+                            .social
+                                ul.social_list
+                                    each item in ['soc-vk', 'soc-fb', 'soc-twitter', 'soc-google', 'soc-email']
+                                        li.social_item
+                                            a(href='#').social_link
+                                                svg.icon.icon-20.icon-coin(class='icon-' + item)
+                                                    use(xlink:href="assets/sprite/sprite.svg#" + item)
+                .header_nav
+                    nav.nav
+                        ul.nav_list
+                            each item in ['home']
+                                li.nav_item
+                                    a(href='#').nav_link
+                                        svg.icon.icon-20.icon-grey(class='icon-' + item)
+                                            use(xlink:href="assets/sprite/sprite.svg#" + item)
+            .header_secondary.header_secondary--right
+                .header_search
+                    .search
+                        +icon('search', ['icon-15', 'icon-iron'])
+                        input(type='input', placeholder='Исследовать мир').search_input
+        .content
+            .content_inner
+                h1.title.title--1 Альбомы
+                ul.album-card_list
+    footer.footer
+        .footer_section
+        .footer_scroll-btn
+        .footer_section
