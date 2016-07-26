@@ -34,18 +34,12 @@ class Photo {
 
   /**
    * Метод для загрузки данных фотографий
-   * @param {number} [photoId=''] - id фотографии
    * @returns {Promise} - Данные фотографий альбома
    */
 
-  _loadPhotos(photoId = '') {
-    if(!(typeof photoId === 'number') && (photoId != '')) {
-      throw new Error('photoId must be a number.');
-    }
-
+  _loadPhotos() {
     return vk.callApi('photos.get', {
       album_id: this.album.id,
-      photo_ids: photoId,
       extended: 1
     });
   }
@@ -56,7 +50,7 @@ class Photo {
   */
   
   _loadAlbum() {
-    return vk.callApi('photos.getAlbums', {album_ids: this.album});
+    return vk.callApi('photos.getAlbums', { album_ids: this.album });
   }
   
   /**
@@ -68,6 +62,8 @@ class Photo {
     if(!(response instanceof Object)) {
       throw new Error('Response must be an Object.');
     }
+
+    // todo: use current album id
     this.album = response.items[0];
     this.coverId = this.album.thumb_id;
   }
@@ -78,16 +74,9 @@ class Photo {
    */
 
   _readPhotos(response) {
-    if(!(response instanceof Object)) {
-      throw new Error('Response must be an Object.');
-    }
-
     this.photos = response.items.sort((a, b) => b.date < a.date);
-    let index = this.photos.findIndex((element, index) => {
-      if(element.id === this.coverId) {
-        return index;
-      }
-    });
+
+    let index = this.photos.findIndex((element, index) => element.id === this.coverId);
     let coverPhoto = this.photos.splice(index, 1);
     this.photos.unshift(coverPhoto[0]);
   }

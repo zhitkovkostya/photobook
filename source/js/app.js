@@ -12,7 +12,6 @@ if (document.querySelector('.user-panel')) {
 }
 
 if (document.querySelector('.photo-card_list')) {
-  album = $('.album-card_link').attr('id');
   new Photo('.photo-card_list', album);
 }
 

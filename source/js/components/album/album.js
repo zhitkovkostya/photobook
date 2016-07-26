@@ -17,6 +17,7 @@ class Album {
     if(typeof selector !== 'string') {
       throw new Error(`Selector must be a string: ${selector}.`);
     }
+
     this.rootEl  = document.querySelector(selector);
 
     if (!this.rootEl) {
@@ -24,10 +25,13 @@ class Album {
     }
 
     this._loadAlbums()
-      .then((response) => this._readAlbums(response))
-      .then(() => this._loadCovers(this.coverOptions))
-      .then((response) => this._readCovers(response))
-      .then(() => this._renderAlbums());
+      .then(response => this._readAlbums(response))
+      .then(() => this._loadPreviews())
+      .then(response => this._readCovers(response))
+      .then(() => this._renderAlbums())
+      .catch((e) => {
+        console.warn(e);
+      });
   }
 
   /**
@@ -45,11 +49,14 @@ class Album {
   * @returns {Promise} - Данные обложек альбомов
   */
 
-  _loadCovers(photos) {
-    if(typeof photos !== 'string') {
-      throw new Error(`Photos must be a string: ${photos}.`);
-    }
-    return vk.callApi('photos.getById', {photos: photos});
+  _loadPreviews() {
+    let previewsQuery = '';
+
+    this.albums.forEach(album => {
+      previewsQuery += album.owner_id + "_" + album.thumb_id + ",";
+    });
+
+    return vk.callApi('photos.getById', { photos: previewsQuery });
   }
   
   /**
@@ -58,27 +65,14 @@ class Album {
   */
 
   _readAlbums(response) {
-    if(!(response instanceof Object)) {
-      throw new Error('Response must be an Object.');
-    }
-
     this.albums = response.items.sort((a, b) => b.created < a.created);
-    this.coverOptions = '';
-    this.albums.forEach((album) => {
-      this.coverOptions += album.owner_id + "_" + album.thumb_id + ",";
-    });
   }
 
   /**
    * Метод для чтения данных обложек альбомов
    * @param {Object} response - Данные обложки альбома
    */
-
   _readCovers(response) {
-    if(!(response instanceof Object)) {
-      throw new Error('Response must be an Object.');
-    }
-
     this.covers = response;
   }
 

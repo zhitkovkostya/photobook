@@ -70,7 +70,7 @@ class vkApi {
         params.v = this.version;
         VK.Api.call(method, params, (response)=> {
           if (response.error) {
-            reject(new Error(response.error.error_msg));
+            reject(response.error.error_msg);
           } else {
             resolve(response.response);
           }
