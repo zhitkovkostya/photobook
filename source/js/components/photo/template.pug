@@ -1,0 +1,25 @@
+li.photo-card_item
+  .photo-card
+    header.photo-card_header
+      a(href='#').photo-card_link
+        img(src='#{photo}').photo-card_image
+        svg(class='icon icon-loupe icon-40 icon-white')
+          use(xlink:href="/assets/sprite/sprite.svg#loupe")
+      .photo-card_actions
+        .actions
+          ul.actions_list
+            li.actions_item
+              a(href='#').actions_link
+                svg(class='icon icon-comments icon-20 icon-white')
+                  use(xlink:href="/assets/sprite/sprite.svg#comments")
+                span.actions_count #{comments}
+            li.actions_item
+              a(href='#').actions_link
+                svg(class='icon icon-comments icon-20 icon-white')
+                  use(xlink:href="/assets/sprite/sprite.svg#like")
+                span.actions_count #{likes}
+    footer.photo-card_footer
+      a(href='#').photo-card_edit
+        svg(class='icon icon-comments icon-20 icon-grey')
+          use(xlink:href="/assets/sprite/sprite.svg#edit")
+      span.photo-card_title #{name}
