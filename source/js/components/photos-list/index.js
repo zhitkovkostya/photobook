@@ -6,7 +6,7 @@ var template = require('jade!./template.pug');
  * @class
  */
 
-class Photo {
+class PhotosList {
 
   /**
    * Конструктор класса
@@ -99,4 +99,4 @@ class Photo {
   }
 }
 
-module.exports = Photo;
+module.exports = PhotosList;
