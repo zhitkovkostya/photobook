@@ -1,20 +1,29 @@
-var AlbumsList = require('./components/albums-list'),
-    User = require('./components/user'),
-    PhotosList = require('./components/photos-list'),
-    PhotoWindow = require('./components/modal-window/photo-window');
-var album = null;
+var AlbumsList = require('./components/albums-list');
+var User = require('./components/user');
+var PhotosList = require('./components/photos-list');
+var PhotoWindow = require('./components/modal-window/photo-window');
+var router = require('./components/router');
 
-if(document.querySelector('.album-card_list')) {
-  new AlbumsList('.album-card_list', album);
-}
+router
+  .route({
+    url: '^/$',
+    templateId: 'view-home',
+    controller: viewHomeController
+  })
+  .route({
+    url: '^/album/(.*)',
+    templateId: 'view-album',
+    controller: viewAlbumController
+  });
 
-if(document.querySelector('.user-panel')) {
+
+function viewHomeController() {
+  new AlbumsList('.album-card_list');
   let user = new User('.user-panel');
 }
 
-if(document.querySelector('.photo-card_list')) {
-
-  new PhotosList('.photo-card_list', album);
+function viewAlbumController(albumId) {
+  new PhotosList('.photo-card_list', albumId);
   let photoWindow;
   let modalWindow = document.querySelector('.modal-window');
   let photoCards = document.querySelector('.photo-card_list');

@@ -1,4 +1,5 @@
 var vk = require('../api-vk');
+var router = require('../router');
 var template = require('jade!./template.pug');
 
 /**
@@ -32,6 +33,21 @@ class AlbumsList {
       .catch((e) => {
         console.warn(e);
       });
+
+
+    this.rootEl.addEventListener('click', e => {
+      e.preventDefault();
+
+      let $target = $(e.target);
+      let $album = $target.closest('.album-card_link');
+      let albumId = $album && $album.data('album');
+
+      if (albumId == null) {
+        return;
+      }
+
+      router.go(`/album/${albumId}`);
+    });
   }
 
   /**

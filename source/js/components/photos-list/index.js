@@ -11,15 +11,17 @@ class PhotosList {
   /**
    * Конструктор класса
    * @param {string} selector - Селектор элемента
-   * @param {number} album - id альбома
+   * @param {number} albumId - id альбома
    */
 
-  constructor(selector, album) {
+  constructor(selector, albumId) {
     if(typeof selector !== 'string') {
       throw new Error('Selector must be a string.');
     }
+
     this.rootEl  = document.querySelector(selector);
-    this.album = album;
+    this.albumId = albumId;
+    this.album = null;
 
     if (!this.rootEl) {
       throw new Error(`Element not found: ${selector}`);
@@ -41,7 +43,7 @@ class PhotosList {
 
   _loadPhotos() {
     return vk.callApi('photos.get', {
-      album_id: this.album.id,
+      album_id: this.albumId,
       extended: 1
     });
   }
@@ -52,7 +54,7 @@ class PhotosList {
   */
   
   _loadAlbum() {
-    return vk.callApi('photos.getAlbums', { album_ids: this.album });
+    return vk.callApi('photos.getAlbums', { album_ids: this.albumId });
   }
 
   /**
@@ -74,7 +76,6 @@ class PhotosList {
       throw new Error('Response must be an Object.');
     }
 
-    // todo: use current album id
     this.album = response.items[0];
     this.coverId = this.album.thumb_id;
   }
