@@ -1,7 +1,7 @@
 li.photo-card_item
   .photo-card
     header.photo-card_header
-      a(href='#').photo-card_link
+      a(href='#' data-photo='#{photoId}' data-album='#{albumId}').photo-card_link
         img(src='#{photo}').photo-card_image
         svg(class='icon icon-loupe icon-40 icon-white')
           use(xlink:href="/assets/sprite/sprite.svg#loupe")

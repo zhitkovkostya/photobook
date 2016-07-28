@@ -27,6 +27,8 @@ class PhotosList {
 
     this._loadAlbum()
       .then((response) => this._readAlbum(response))
+      .then(() => this._loadComments())
+      .then((response) => this._readComments(response))
       .then(() => this._loadPhotos())
       .then((response) => this._readPhotos(response))
       .then(() => this._renderPhotos());
@@ -52,10 +54,19 @@ class PhotosList {
   _loadAlbum() {
     return vk.callApi('photos.getAlbums', { album_ids: this.album });
   }
+
+  /**
+   * Метод для загрузки данных комментариев
+   * @returns {Promise} - Данные комментариев альбома
+   */
+
+  _loadComments() {
+    return vk.callApi('photos.getAllComments', { need_likes: true });
+  }
   
   /**
   * Метод для чтения данных альбома
-  * @param {Obejct} response - Данные альбома 
+  * @param {Object} response - Данные альбома
   */
 
   _readAlbum(response) {
@@ -69,6 +80,15 @@ class PhotosList {
   }
 
   /**
+   * Метод для чтения данных альбома
+   * @param {Object} response - Данные альбома
+   */
+
+  _readComments(response) {
+    this.comments = response.items;
+  }
+
+  /**
    * Метод для чтения данных фотографий, где первое фото - обложка альбома
    * @param {Object} response - Данные фотографий 
    */
@@ -79,6 +99,16 @@ class PhotosList {
     let index = this.photos.findIndex((element, index) => element.id === this.coverId);
     let coverPhoto = this.photos.splice(index, 1);
     this.photos.unshift(coverPhoto[0]);
+    this.photos.forEach((photo) => {
+      photo.comments.items = [];
+    });
+    this.comments.forEach((comment) => {
+      let photo = this.photos.find((photo) => photo.id === comment.pid);
+
+      if(photo) {
+        photo.comments.items.push(comment);
+      }
+    });
   }
 
   /**
@@ -89,6 +119,8 @@ class PhotosList {
     this.photos.forEach((photo) => {
       let options = {
         photo: photo.photo_604,
+        photoId: photo.id,
+        albumId: this.album.id,
         comments: photo.comments.count,
         likes: photo.likes.count,
         name: photo.text
@@ -96,6 +128,10 @@ class PhotosList {
 
       this.rootEl.innerHTML += template(options);
     });
+  }
+
+  get items() {
+    return this.photos;
   }
 }
 

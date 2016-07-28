@@ -1,0 +1,45 @@
+mixin icon(name, mods)
+  - mods = mods || ''
+  svg(class='icon icon-' + name class=mods)
+    use(xlink:href="assets/sprite/sprite.svg#" + name)
+
+.modal_overlay.is-hidden--phone
+  .modal.modal--top.is-hidden--phone
+    .photo-preview
+      header.photo-preview_header
+        img(src='#{url}').photo-preview_image
+        a(href='#').photo-preview_controls.photo-preview_controls--prev
+          +icon('arrow-left', ['icon-30', 'icon-coin'])
+        a(href='#').photo-preview_controls.photo-preview_controls--next
+          +icon('arrow-right', ['icon-30', 'icon-coin'])
+        a(href='#').photo-preview_close
+          +icon('close', ['icon-30', 'icon-coin'])
+      section.photo-preview_info
+        .photo-preview_user
+          .user
+            a(href='#').userpic.userpic--small
+              img(src='#{userPhotoUrl}').userpic_image
+            a(href='#').user_username #{userName} #{userSurname}
+          a(href='#').btn.btn--danger.btn--bold
+            .btn_icon
+              +icon('no-like', ['icon-20', 'icon-white'])
+            .btn_text #{likes}
+        .photo-preview_title #{title}
+        .photo-preview_description
+      footer.photo-preview_footer
+        .comments
+          a(href='#').comments_title Комментарии
+            +icon('arrow-down', ['icon-15', 'icon-iron'])
+          ul.comments_list
+            li.comments_item
+              .comments_userpic
+                a(href='#').userpic.userpic--small
+                  img(src='#{userPhotoUrl}').userpic_image
+              .comments_message
+                a(href='#').comments_username #{userName} #{userSurname}
+                .comments_input
+                  input(type='input', placeholder='Добавить комментарий').input
+                  a(href='#').btn.btn--line.btn--sky Добавить
+
+
+
