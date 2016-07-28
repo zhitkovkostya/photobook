@@ -138,7 +138,7 @@ class PhotoWindow extends ModalWindow {
       userSurname: this.photo.user.surname,
       userPhotoUrl: this.photo.user.photoUrl
     };
-    let template  = compileFunc(options);
+    let photoTemplate  = compileFunc(options);
 
     let commentsTemplate = '';
     this.photo.comments.forEach((comment) => {
@@ -150,9 +150,11 @@ class PhotoWindow extends ModalWindow {
       };
       commentsTemplate += commentsCompileFunc(commentsOption);
     });
+    /** Создание парсера для шаблона, в который будут помещены комментарии пользователей */
     let parser = new DOMParser();
-    let doc = parser.parseFromString(template, "text/html");
+    let doc = parser.parseFromString(photoTemplate, "text/html");
     let commentsContainer = doc.querySelector('.comments_list');
+
     commentsContainer.innerHTML += commentsTemplate;
     this.template = doc.querySelector('.modal_overlay').outerHTML;
     this.template += doc.querySelector('.modal').outerHTML;

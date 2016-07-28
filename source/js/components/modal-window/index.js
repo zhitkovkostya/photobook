@@ -12,7 +12,7 @@ class ModalWindow {
   
   /**
   * Метод для добавления шаблона на страницу
-  * @param {Object} template - Шаблон с подгруженными данными
+  * @param {string} template - Шаблон с подгруженными данными
   */
 
   insert(template) {
@@ -24,7 +24,7 @@ class ModalWindow {
   
   /**
   * Метод для отображения(открытия) модального окна
-  * @param {Object} template - Шаблон с подгруженными данными
+  * @param {string} template - Шаблон с подгруженными данными
   */
 
   open(template) {
