@@ -29,6 +29,7 @@ function viewAlbumController(albumId) {
   let photoCards = document.querySelector('.photo-card_list');
 
   photoCards.addEventListener('click', function(event) {
+    event.preventDefault();
     let target = event.target;
     let photoId = parseInt(target.dataset.photo);
     let albumId = parseInt(target.dataset.album);
