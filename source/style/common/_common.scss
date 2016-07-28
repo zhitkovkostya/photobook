@@ -485,11 +485,8 @@
   }
 
   &_image {
-    @include phone {
-      width: 100%;
-    }
     display: block;
-    min-width: 100%;
+    width: 100%;
     min-height: 100%;
   }
 
@@ -613,12 +610,9 @@
   }
 
   &_image {
-    @include phone {
-      width: 100%;
-    }
-    display: block;
+
+    padding-bottom: 100%;
     width: 100%;
-    min-height: 100%;
   }
 
   &_actions {
@@ -658,21 +652,12 @@
   }
 
   &_info {
-    @include desktop {
-      padding: 40px 20px;
-    }
-    @include tablet {
-      padding: 30px 20px;
-    }
-    @include phone {
-      padding: 20px;
-    }
-
     display: none;
     flex-direction: column;
     justify-content: flex-end;
     width: 100%;
     height: 100%;
+    padding: 20px;
     position: absolute;
     bottom: 0;
     left: 0;

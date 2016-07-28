@@ -2,9 +2,10 @@ li.album-card_item
   .album-card
     header.album-card_header
       a(href='/album.html' id='#{id}').album-card_link
-        img(src='#{cover}').album-card_image
+        .album-card_image(style="background: url('#{cover}') no-repeat center center; background-size: cover;")
+        // img(src='#{cover}').album-card_image
         .album-card_info
           .album-card_description #{description}
-          .album-card_count #{count}
+          .album-card_count #{count} фотографий
     footer.album-card_footer.album-card_footer--right
       span.album-card_title #{name}
