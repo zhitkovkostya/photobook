@@ -1,6 +1,5 @@
 var ModalWindow = require('../'),
     compileFunc = require('jade!./template.pug'),
-    commentsCompileFunc = require('jade!./template-comments.pug'),
     VK = require('../../api-vk');
 
 /**
@@ -136,28 +135,10 @@ class PhotoWindow extends ModalWindow {
       likes: this.photo.likes,
       userName: this.photo.user.name,
       userSurname: this.photo.user.surname,
-      userPhotoUrl: this.photo.user.photoUrl
+      userPhotoUrl: this.photo.user.photoUrl,
+      comments: this.photo.comments
     };
-    let photoTemplate  = compileFunc(options);
-
-    let commentsTemplate = '';
-    this.photo.comments.forEach((comment) => {
-      let commentsOption = {
-        name: comment.userName,
-        surname: comment.userSurname,
-        photoUrl: comment.userPhotoUrl,
-        text: comment.text
-      };
-      commentsTemplate += commentsCompileFunc(commentsOption);
-    });
-    /** Создание парсера для шаблона, в который будут помещены комментарии пользователей */
-    let parser = new DOMParser();
-    let doc = parser.parseFromString(photoTemplate, "text/html");
-    let commentsContainer = doc.querySelector('.comments_list');
-
-    commentsContainer.innerHTML += commentsTemplate;
-    this.template = doc.querySelector('.modal_overlay').outerHTML;
-    this.template += doc.querySelector('.modal').outerHTML;
+    this.template  = compileFunc(options);
   }
 }
 

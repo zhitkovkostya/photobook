@@ -40,3 +40,11 @@ mixin icon(name, mods)
               .comments_input
                 input(type='input', placeholder='Добавить комментарий').input
                 a(href='#').btn.btn--line.btn--sky Добавить
+          each comment in comments
+            li.comments_item
+              .comments_userpic
+                a(href='').userpic.userpic--small
+                  img(src='#{comment.userPhotoUrl}').userpic_image
+              .comments_message
+                a(href='#').comments_username #{comment.userName} #{comment.userSurname}
+                .comments_text #{comment.text}
