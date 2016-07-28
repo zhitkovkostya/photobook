@@ -2,7 +2,7 @@ li.album-card_item
   .album-card
     header.album-card_header
       a(href='/album.html' data-album='#{id}').album-card_link
-        img(src='#{cover}').album-card_image
+        .album-card_image(style="background: url('#{cover}') no-repeat center center; background-size: cover;")
         .album-card_info
           .album-card_description #{description}
           .album-card_count #{count}

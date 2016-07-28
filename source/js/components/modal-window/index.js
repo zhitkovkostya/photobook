@@ -16,7 +16,10 @@ class ModalWindow {
   */
 
   insert(template) {
-    this.containerEl.appendChild(template);
+    if(!template) {
+      return;
+    }
+    this.containerEl.innerHTML += template;
   }
   
   /**

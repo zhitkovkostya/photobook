@@ -154,7 +154,8 @@ class PhotoWindow extends ModalWindow {
     let doc = parser.parseFromString(template, "text/html");
     let commentsContainer = doc.querySelector('.comments_list');
     commentsContainer.innerHTML += commentsTemplate;
-    this.template = doc.querySelector('.modal_overlay');
+    this.template = doc.querySelector('.modal_overlay').outerHTML;
+    this.template += doc.querySelector('.modal').outerHTML;
   }
 }
 
