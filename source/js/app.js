@@ -27,6 +27,7 @@ function viewAlbumController(albumId) {
   let photoWindow;
   let modalWindow = document.querySelector('.modal-window');
   let photoCards = document.querySelector('.photo-card_list');
+  let photoWindowElement = document.querySelector('.modal-window_photo');
 
   photoCards.addEventListener('click', function(event) {
     event.preventDefault();
@@ -38,9 +39,25 @@ function viewAlbumController(albumId) {
     }
     photoWindow = new PhotoWindow(".modal-window_photo", photoId, albumId);
     photoWindow.open();
+
+    photoWindowElement.addEventListener('click', function(event) {
+      event.preventDefault();
+      let target = event.target;
+      let next = target.closest('.photo-preview_controls--next');
+      let prev = target.closest('.photo-preview_controls--prev');
+
+      if (!next && !prev) {
+        return;
+      }
+
+      if (next) photoWindow.slide('next');
+      if (prev) photoWindow.slide('previous');
+    });
+
   });
 
   modalWindow.addEventListener('click', function(event) {
+    event.preventDefault();
     let target = event.target;
     let closeButton = target.closest('.photo-preview_close');
     if(!closeButton) {

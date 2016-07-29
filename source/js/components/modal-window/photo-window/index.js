@@ -20,6 +20,60 @@ class PhotoWindow extends ModalWindow {
     super(container);
     this.photoId = photoId;
     this.albumId = albumId;
+    this._loadPhotoList()
+        .then((response) => this._readPhotoList(response));
+
+  }
+
+  /**
+  * Метод для загрузки данных о фотографиях в альбоме
+  * @returns {Promise} - Данные фотографий
+  */
+  _loadPhotoList() {
+    return VK.callApi('photos.get', {
+        album_id: this.albumId
+    });
+  }
+
+  /**
+   * Метод для чтения данных о фотографиях в альбоме
+   * @param {Object} response - Данные о фотографиях в альбоме
+   */
+  _readPhotoList(response) {
+    this.photoList = response.items;
+  }
+
+  /**
+  * Метод переключения между фотографиями
+  * @param {String} direction - Напраление слайдера
+  */
+  slide(direction) {
+    let nextPhoto;
+    let photoList = this.photoList;
+    for (let  index = 0; index <= photoList.length - 1; index++ ) {
+
+      if (direction === 'next') {
+
+        if (this.photoId === this.photoList[index].id) {
+          nextPhoto = (index === photoList.length - 1) ? photoList[0] : photoList[index + 1];
+          this.photoId = nextPhoto.id;
+          break;
+        }
+      }
+
+      if (direction === 'previous') {
+
+        if (this.photoId === this.photoList[index].id) {
+          nextPhoto = (index === 0) ? photoList[photoList.length - 1] : photoList[index - 1];
+          this.photoId = nextPhoto.id;
+          break;
+        }
+      }
+    }
+
+    this._initialize()
+        .then(() => this._readTemplate())
+        .then(()=> this.insert(this.template));
   }
 
   /**
@@ -39,10 +93,9 @@ class PhotoWindow extends ModalWindow {
    * Метод для чтения данных фотографии
    * @param {Object} response - Данные фотографии
    */
-
   _readPhoto(response) {
     this.photo = {
-      url: response.items[0].photo_1280,
+      url: response.items[0].photo_604,
       title: response.items[0].text,
       likes: response.items[0].likes.count
     };
@@ -108,19 +161,24 @@ class PhotoWindow extends ModalWindow {
   }
 
   /**
+  * Метод для инициализации данных о фотографии
+  */
+  _initialize() {
+    return this._loadPhoto()
+        .then((response) => this._readPhoto(response))
+        .then(() => this._loadUser())
+        .then((response) => this._readUser(response))
+        .then(() => this._loadComments())
+        .then((response) => this._readComments(response))
+    }
+
+  /**
   * Метод для открытия модального окна просмотра фотографий
   */
-
   open() {
-    this._loadPhoto()
-      .then((response) => this._readPhoto(response))
-      .then(() => this._loadUser())
-      .then((response) => this._readUser(response))
-      .then(() => this._loadComments())
-      .then((response) => this._readComments(response))
-      .then(() => {
-        this._readTemplate();
-        super.open(this.template);
+      this._initialize().then(() => {
+          this._readTemplate();
+          super.open(this.template);
       });
   }
 

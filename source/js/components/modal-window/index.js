@@ -19,7 +19,7 @@ class ModalWindow {
     if(!template) {
       return;
     }
-    this.containerEl.innerHTML += template;
+    this.containerEl.innerHTML = template;
   }
   
   /**
