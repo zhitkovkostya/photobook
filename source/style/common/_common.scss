@@ -721,7 +721,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(#000, 0.9);
+    background-color: rgba(#000, 0.8);
     z-index: 90;
 
     &--photo-preview {
@@ -933,6 +933,7 @@
     display: flex;
     justify-content: center;
     position: relative;
+    background-color: #1e1e1e;
   }
 
   &_info {
@@ -975,7 +976,6 @@
     width: auto;
     max-width: 100%;
     height: 100%;
-    border-radius: 5px 5px 0 0;
     overflow: hidden;
   }
 
@@ -1357,12 +1357,14 @@
 }
 
 .icon-no-like {
+  margin-right: 5px;
   fill: transparent;
   stroke: $color-white;
   stroke-width: 3px;
 }
 
 .icon-arrow-down {
+  margin-left: 5px;
   opacity: 0.2;
 }
 
